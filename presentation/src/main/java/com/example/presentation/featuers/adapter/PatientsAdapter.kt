@@ -13,18 +13,25 @@ import com.example.core.imageUrl
 import com.example.domain.model.patient.PatientRemoteModel
 import com.example.presentation.R
 
-class PatientsAdapter():ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsViewHolder>(DiffCallBack){
+class PatientsAdapter(private val onDeletePatient: (id:String) ->Unit)
+    :ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsViewHolder>(DiffCallBack){
     class PatientsViewHolder(private val view :View):RecyclerView.ViewHolder(view) {
         val nameTextView:TextView
         val berthdayTextView:TextView
         val conditionTextView:TextView
+        val deleteImage:ImageView
         val image:ImageView
         init{
             nameTextView=view.findViewById(R.id.tv_name)
             berthdayTextView=view.findViewById(R.id.date_barthday)
             conditionTextView=view.findViewById(R.id.condition)
             image=view.findViewById(R.id.iv_photo)
+            deleteImage=view.findViewById(R.id.iv_delete)
+            deleteImage.setOnClickListener{
+
+            }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientsViewHolder {
@@ -40,6 +47,10 @@ class PatientsAdapter():ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsV
         holder.conditionTextView.text=getItem(position).condition
         holder.nameTextView.text=getItem(position).name
         holder.berthdayTextView.text=getItem(position).birthdate
+        holder.deleteImage.setOnClickListener{
+            onDeletePatient(getItem(position)._id)
+        }
+
     }
     private object DiffCallBack:DiffUtil.ItemCallback<PatientRemoteModel>()
     {
@@ -58,5 +69,6 @@ class PatientsAdapter():ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsV
         }
 
     }
+
 
 }
