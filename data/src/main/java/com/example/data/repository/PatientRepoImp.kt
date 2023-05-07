@@ -22,5 +22,9 @@ class PatientRepoImp @Inject constructor(private val api: PatientsApi):PatientRe
         return api.deletePatient(id)
     }
 
+    override suspend fun getPatientById(id: String): PatientRemoteModel {
+        return api.getPatientById(id).data
+    }
+
 
 }

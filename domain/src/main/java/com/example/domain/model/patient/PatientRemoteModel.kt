@@ -14,6 +14,13 @@ data class PatientRemoteModel
     val gender: String,
     val photo: String,
     //local var
-    val tests: List<TestModel>,
-    var selected: Boolean = false,
+//    val tests: List<TestModel>,
+    var selected: Boolean = false
+
 )
+{
+        fun getAbout():String
+        {
+            return "Lives in $address , Email $email ,Born on $birthdate"
+        }
+    }

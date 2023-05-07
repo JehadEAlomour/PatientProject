@@ -1,6 +1,7 @@
 package com.example.presentation.featuers.patients
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PatientsViewModel @Inject constructor(
     private val repository: PatientRepoImp,
-    private val deletePatientUseCase: DeletePatientUseCase,
+    private val deletePatientUseCase: DeletePatientUseCase
 ) : ViewModel() {
     private val patientMutableStateFlow: MutableStateFlow<List<PatientRemoteModel>> =
         MutableStateFlow(emptyList())
@@ -26,7 +27,9 @@ class PatientsViewModel @Inject constructor(
         MutableLiveData()
     val deletePatientLiveData: MutableLiveData<DeletePatientRemoteModel> =
         deletePatientMutableLiveData
-
+    private val getPatientMutableStateFlow: MutableStateFlow<PatientRemoteModel?> =
+        MutableStateFlow(null)
+    val getPatientStateFlow = getPatientMutableStateFlow.asStateFlow()
     private val patientMutableLiveError: MutableStateFlow<Exception?> = MutableStateFlow(null)
     private val patientLoadingStateFlow: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val patientStateFlow = patientMutableStateFlow.asStateFlow()
@@ -52,6 +55,7 @@ class PatientsViewModel @Inject constructor(
         }
 
     }
+
 
     fun deletePatient(id: String) {
         viewModelScope.launch {

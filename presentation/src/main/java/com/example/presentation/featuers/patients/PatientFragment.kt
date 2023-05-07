@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -39,16 +39,19 @@ class PatientFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initAdapter()
         initObserver()
         initListener()
 
 
+
     }
 
     private fun initAdapter() {
-        adapter=PatientsAdapter(::deletePatient)
-        binding.rvPathinet.adapter=adapter
+
+        adapter = PatientsAdapter(::deletePatient,::onClick)
+        binding.rvPathinet.adapter = adapter
     }
 
     private fun initListener() {
@@ -57,12 +60,13 @@ class PatientFragment : Fragment() {
         }
         binding.swipeRefresh.setOnRefreshListener {
             patientViwModel.getPatient()
-        lifecycleScope.launch {
-            delay(300)
-            binding.swipeRefresh.isRefreshing=false
+            lifecycleScope.launch {
+                delay(300)
+                binding.swipeRefresh.isRefreshing = false
 
 
-        }}
+            }
+        }
 
     }
 
@@ -92,27 +96,34 @@ class PatientFragment : Fragment() {
             }
         }
         lifecycleScope.launch {
-            patientViwModel.deletePatientLiveData.observe(viewLifecycleOwner,::onSuccessDeletePatient)
+            patientViwModel.deletePatientLiveData.observe(
+                viewLifecycleOwner,
+                ::onSuccessDeletePatient
+            )
 
 
-            }
         }
-
-    private fun onSuccessDeletePatient(response:DeletePatientRemoteModel)
-    {
-            if(response!=null)
-            {
-                Toast.makeText(requireContext(), "Item Is Deleted", Toast.LENGTH_SHORT).show()
-                patientViwModel.getPatient()
-            }
     }
-    private fun deletePatient(id:String)
-    {
-        MaterialAlertDialogBuilder(requireContext()).setMessage("Are you Sure?").setNegativeButton("No") {daialog,_->
-            daialog.dismiss()
 
-        }.setPositiveButton("Yes"){dialoge,_ ->
-            patientViwModel.deletePatient(id)
-            dialoge.dismiss()
-        }.show()
-        }}
+    private fun onSuccessDeletePatient(response: DeletePatientRemoteModel) {
+        Toast.makeText(requireContext(), "Item Is Deleted", Toast.LENGTH_SHORT).show()
+        patientViwModel.getPatient()
+    }
+
+    private fun deletePatient(id: String) {
+        MaterialAlertDialogBuilder(requireContext()).setMessage("Are you Sure?")
+            .setNegativeButton("No") { daialog, _ ->
+                daialog.dismiss()
+
+            }.setPositiveButton("Yes") { dialoge, _ ->
+                patientViwModel.deletePatient(id)
+                dialoge.dismiss()
+            }.show()
+    }
+    private fun onClick(id:String)
+    {
+        findNavController().navigate(R.id.getPatientByIdFragment, bundleOf("id" to id ))
+    }
+
+
+}

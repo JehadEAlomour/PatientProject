@@ -105,16 +105,16 @@ class AddPatientFragment : Fragment() {
 
             }
         }
-        lifecycleScope.launch {
-            viewModel.addPatientLiveError.collect {
-                if (it != null) {
-                    Toast.makeText(
-                        requireContext(), "Error:${it.localizedMessage}", Toast.LENGTH_SHORT
-                    ).show()
-                    Log.d("TAGErrorObserver", "initObserver:${it.localizedMessage} ")
-                }
-            }
-        }
+//        lifecycleScope.launch {
+//            viewModel.addPatientLiveError.collect {
+//                if (it != null) {
+//                    Toast.makeText(
+//                        requireContext(), "Error:${it.localizedMessage}", Toast.LENGTH_SHORT
+//                    ).show()
+//                    Log.d("TAGErrorObserver", "initObserver:${it.localizedMessage} ")
+//                }
+//            }
+//        }
     }
 
 

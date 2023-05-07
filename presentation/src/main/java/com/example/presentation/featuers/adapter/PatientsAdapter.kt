@@ -7,29 +7,31 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.imageUrl
 import com.example.domain.model.patient.PatientRemoteModel
 import com.example.presentation.R
 
-class PatientsAdapter(private val onDeletePatient: (id:String) ->Unit)
+class PatientsAdapter(private val onDeletePatient: (id:String) ->Unit,private val OnClickItem:(id:String) ->Unit)
     :ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsViewHolder>(DiffCallBack){
+    var lastIndex=-1
     class PatientsViewHolder(private val view :View):RecyclerView.ViewHolder(view) {
         val nameTextView:TextView
         val berthdayTextView:TextView
         val conditionTextView:TextView
         val deleteImage:ImageView
         val image:ImageView
+        val cardView:CardView
         init{
             nameTextView=view.findViewById(R.id.tv_name)
             berthdayTextView=view.findViewById(R.id.date_barthday)
             conditionTextView=view.findViewById(R.id.condition)
             image=view.findViewById(R.id.iv_photo)
             deleteImage=view.findViewById(R.id.iv_delete)
-            deleteImage.setOnClickListener{
+            cardView=view.findViewById(R.id.cv_pathinets)
 
-            }
         }
 
     }
@@ -49,6 +51,22 @@ class PatientsAdapter(private val onDeletePatient: (id:String) ->Unit)
         holder.berthdayTextView.text=getItem(position).birthdate
         holder.deleteImage.setOnClickListener{
             onDeletePatient(getItem(position)._id)
+        }
+        holder.cardView.setOnClickListener {
+            if (position!=lastIndex) {
+                if (lastIndex != -1) {
+                    getItem(lastIndex).selected = false
+                    notifyItemChanged(lastIndex)
+
+
+                }
+                lastIndex = position
+                getItem(position).selected = true
+                notifyItemChanged(position)
+            }
+            OnClickItem(getItem(position)._id)
+
+
         }
 
     }

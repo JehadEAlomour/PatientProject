@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_patientFragment_to_addPatientFragment"
             app:destination="@id/addPatientFragment" />
+        <action
+            android:id="@+id/action_patientFragment_to_getPatientByIdFragment"
+            app:destination="@id/getPatientByIdFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPatientFragment"
         android:name="com.example.presentation.featuers.addPatients.AddPatientFragment"
         android:label="fragment_add_patient"
         tools:layout="@layout/fragment_add_patient" />
+    <fragment
+        android:id="@+id/getPatientByIdFragment"
+        android:name="com.example.presentation.featuers.getPatient.GetPatientByIdFragment"
+        android:label="fragment_get_patient_by_id"
+        tools:layout="@layout/fragment_get_patient_by_id" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

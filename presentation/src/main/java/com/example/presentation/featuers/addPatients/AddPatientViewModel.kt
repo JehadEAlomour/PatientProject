@@ -34,6 +34,7 @@ class AddPatientViewModel @Inject constructor(private val addPatientUseCase: Add
             } catch (e: Exception) {
                 addPatientMutableLiveError.emit(e)
                 Log.d("TAG100", "addPatient: ${e.localizedMessage}")
+
             }
             addPatientLoadingStateFlow.emit(false)
         }
