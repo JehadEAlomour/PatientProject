@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.domain.model.delete.DeletePatientRemoteModel
+import com.example.domain.model.delete.DeletePatientResponse
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentPatientBinding
 import com.example.presentation.featuers.adapter.PatientsAdapter
@@ -70,7 +70,7 @@ class PatientFragment : Fragment() {
 
     }
 
-    fun initObserver() {
+    private fun initObserver() {
         lifecycleScope.launch {
             patientViwModel.patientLoading.collect {
                 binding.progressCircular.isVisible = it
@@ -102,10 +102,11 @@ class PatientFragment : Fragment() {
             )
 
 
+
         }
     }
 
-    private fun onSuccessDeletePatient(response: DeletePatientRemoteModel) {
+    private fun onSuccessDeletePatient(response: DeletePatientResponse) {
         Toast.makeText(requireContext(), "Item Is Deleted", Toast.LENGTH_SHORT).show()
         patientViwModel.getPatient()
     }

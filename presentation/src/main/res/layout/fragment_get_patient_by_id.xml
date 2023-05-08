@@ -20,22 +20,20 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_name"
-        android:textAllCaps="true"
         style="@style/TextAppearance.Material3.HeadlineSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:lines="2"
+        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="@id/cv_photo"
         app:layout_constraintRight_toRightOf="@id/cv_photo"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="jehad Alomour"
-
-        />
+        tools:text="jehad Alomour" />
 
 
     <com.google.android.material.card.MaterialCardView
@@ -62,8 +60,8 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginBottom="10dp"
         android:rating="4"
         app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintLeft_toRightOf="@id/cv_photo"

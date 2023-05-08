@@ -1,12 +1,20 @@
 package com.example.domain.model.add
 
-data class BodyAddPatientModel
+import com.google.gson.annotations.SerializedName
+
+data class AddPatientRequest
     (
+    @SerializedName("name")
     val name: String,
+    @SerializedName("address")
     val address: String,
+    @SerializedName("gender")
     val gender: String,
-    val birthdate:String,
+    @SerializedName("birthdate")
+    val birthdate: String,
+    @SerializedName("mobile")
     val mobile: String,
+    @SerializedName("email")
     val email: String,
 
 

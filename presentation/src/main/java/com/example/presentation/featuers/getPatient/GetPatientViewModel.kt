@@ -3,9 +3,8 @@ package com.example.presentation.featuers.getPatient
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.patient.PatientRemoteModel
+import com.example.domain.model.patient.PatientResponse
 import com.example.domain.usecase.get.GetPatientByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +19,7 @@ class GetPatientViewModel @Inject constructor(
     status: SavedStateHandle
 ) :
     ViewModel() {
-    private val patientMutableStateFlow:MutableStateFlow<PatientRemoteModel?> = MutableStateFlow(null)
+    private val patientMutableStateFlow:MutableStateFlow<PatientResponse?> = MutableStateFlow(null)
     private val patientMutableLiveError: MutableStateFlow<Exception?> = MutableStateFlow(null)
     private val patientLoadingStateFlow: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val patientLiveError: StateFlow<Exception?> = patientMutableLiveError.asStateFlow()

@@ -1,13 +1,12 @@
 package com.example.presentation.featuers.patients
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.PatientRepoImp
-import com.example.domain.model.delete.DeletePatientRemoteModel
-import com.example.domain.model.patient.PatientRemoteModel
+import com.example.domain.model.delete.DeletePatientResponse
+import com.example.domain.model.patient.PatientResponse
 import com.example.domain.usecase.delete.DeletePatientUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,13 +20,13 @@ class PatientsViewModel @Inject constructor(
     private val repository: PatientRepoImp,
     private val deletePatientUseCase: DeletePatientUseCase
 ) : ViewModel() {
-    private val patientMutableStateFlow: MutableStateFlow<List<PatientRemoteModel>> =
+    private val patientMutableStateFlow: MutableStateFlow<List<PatientResponse>> =
         MutableStateFlow(emptyList())
-    private val deletePatientMutableLiveData: MutableLiveData<DeletePatientRemoteModel> =
+    private val deletePatientMutableLiveData: MutableLiveData<DeletePatientResponse> =
         MutableLiveData()
-    val deletePatientLiveData: MutableLiveData<DeletePatientRemoteModel> =
+    val deletePatientLiveData: MutableLiveData<DeletePatientResponse> =
         deletePatientMutableLiveData
-    private val getPatientMutableStateFlow: MutableStateFlow<PatientRemoteModel?> =
+    private val getPatientMutableStateFlow: MutableStateFlow<PatientResponse?> =
         MutableStateFlow(null)
     val getPatientStateFlow = getPatientMutableStateFlow.asStateFlow()
     private val patientMutableLiveError: MutableStateFlow<Exception?> = MutableStateFlow(null)

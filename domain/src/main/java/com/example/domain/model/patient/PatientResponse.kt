@@ -12,20 +12,22 @@ data class PatientResponse
     val name: String,
     @SerializedName("address")
     val address: String,
-    
+    @SerializedName("mobile")
     val mobile: String,
+    @SerializedName("email")
     val email: String,
+    @SerializedName("birthdate")
     val birthdate: String,
+    @SerializedName("gender")
     val gender: String,
+    @SerializedName("photo")
     val photo: String,
     //local var
 //    val tests: List<TestModel>,
-    var selected: Boolean = false
+    var selected: Boolean = false,
 
-)
-{
-        fun getAbout():String
-        {
-            return "Lives in $address , Email $email ,Born on $birthdate"
-        }
+    ) {
+    fun getAbout(): String {
+        return "Lives in $address , Email $email ,Born on $birthdate"
     }
+}

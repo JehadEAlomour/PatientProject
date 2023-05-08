@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/swipe_refresh"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".featuers.addPatients.AddPatientFragment"
-    xmlns:tools="http://schemas.android.com/tools">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".featuers.addPatients.AddPatientFragment">
 
 
         <View
@@ -127,25 +128,27 @@
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tv_birthday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Birthday"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_mobile"
 
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_birthday"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:hint="Birthday"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mobile"
 
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/btn_add"
             android:layout_width="match_parent"

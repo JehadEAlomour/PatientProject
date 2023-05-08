@@ -10,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.domain.model.add.BodyAddPatientModel
+import com.example.domain.model.add.AddPatientRequest
 import com.example.presentation.databinding.FragmentAddPatientBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -61,8 +61,8 @@ class AddPatientFragment : Fragment() {
         return valid
     }
 
-    private fun getInfo(): BodyAddPatientModel {
-        return BodyAddPatientModel(
+    private fun getInfo(): AddPatientRequest {
+        return AddPatientRequest(
             binding.etName.text.toString(),
             binding.etAddress.text.toString(),
             binding.etGender.text.toString(),

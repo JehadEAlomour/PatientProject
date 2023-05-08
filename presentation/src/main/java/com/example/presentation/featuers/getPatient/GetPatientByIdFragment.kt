@@ -11,16 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.core.imageUrl
-import com.example.domain.model.patient.PatientRemoteModel
+import com.example.domain.model.patient.PatientResponse
 import com.example.presentation.databinding.FragmentGetPatientByIdBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GetPatientByIdFragment : Fragment() {
-    private lateinit var binding: FragmentGetPatientByIdBinding
     private val viewModel: GetPatientViewModel by viewModels()
-
+private lateinit var binding: FragmentGetPatientByIdBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +34,7 @@ class GetPatientByIdFragment : Fragment() {
         initObserver()
     }
 
-    private fun initView(model:PatientRemoteModel) {
+    private fun initView(model:PatientResponse) {
         binding.ivPhoto.imageUrl(model.photo)
         binding.tvAboutInfo.text=model.getAbout()
         binding.tvName.text=model.name

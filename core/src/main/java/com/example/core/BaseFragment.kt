@@ -18,7 +18,6 @@ open class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutId: In
         savedInstanceState: Bundle?,
     ): View? {
 
-
         container?.let {
             performDataBinding(
                 inflater,
@@ -28,7 +27,7 @@ open class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutId: In
         return binding.root
     }
 
-    private fun performDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun performDataBinding(inflater: LayoutInflater, container: ViewGroup) {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
     }
 }
