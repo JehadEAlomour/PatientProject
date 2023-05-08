@@ -1,13 +1,18 @@
 package com.example.domain.model.patient
 
-import com.example.domain.model.TestModel
+import com.google.gson.annotations.SerializedName
 
-data class PatientRemoteModel
+data class PatientResponse
     (
+    @SerializedName("condition")
     val condition: String,
-    val _id: String,
+    @SerializedName("_id")
+    val id: String,
+    @SerializedName("name")
     val name: String,
+    @SerializedName("address")
     val address: String,
+    
     val mobile: String,
     val email: String,
     val birthdate: String,
